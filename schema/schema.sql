@@ -15,6 +15,13 @@ CREATE TABLE offensesbycounty
 (
     id SERIAL,
     county VARCHAR,
-    
-
+    violent_crime INT,
+    murder INT,
+    rape INT,
+    robbery INT,
+    assault INT,
+    property_crime INT,
+    burglary INT,
+    fips INT,
+    CONSTRAINT offensesbycounty PRIMARY KEY (id)
 )
