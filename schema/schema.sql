@@ -24,4 +24,4 @@ CREATE TABLE offensesbycounty
     burglary INT,
     fips INT,
     CONSTRAINT offensesbycounty PRIMARY KEY (id)
-)
+);
