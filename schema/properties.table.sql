@@ -1,9 +1,7 @@
 DROP TABLE properties_selected;
 CREATE TABLE properties_selected (
-id INT PRIMARY KEY,
+id SERIAL PRIMARY KEY,
 assessment_year INT,
-fips TEXT,
+fips INT,
 structuretaxvaluedollarcnt FLOAT
 );
-
-SELECT * FROM
