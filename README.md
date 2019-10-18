@@ -1,9 +1,12 @@
 # Crime and Housing Data Analysis | ETL Technical Report
 This repository represents an Extract, Transform, and Load (ETL) pipeline for analysis of Housing Data (Zillow) vs. Crime in California by County. Our Data is from Kaggle in csv format. From there we transformed our Zillow data and Crime data, reducing the number of unneeded columns (We came across quite a number of NaN/null values) and also removing repetitive columns using Jupyter Notebooks. Next, we loaded them out to PostgreSQL via the sqlalchemy and psycopg2 packages. 
 
+## Data Sources
+- Kaggle.com
+
 Extract 
--	Downloaded Zillow CSV file from Kaggle (https://www.kaggle.com/c/zillow-prize-1/data)
-- Downloaded Crime CSV files from Kaggle (https://www.kaggle.com/fbi-us/california-crime#ca_offenses_by_city.csv)
+-	Download Zillow CSV file from Kaggle (https://www.kaggle.com/c/zillow-prize-1/data)
+- Download Crime CSV files from Kaggle (https://www.kaggle.com/fbi-us/california-crime#ca_offenses_by_city.csv)
 -	File path  resources/Zillow_Data_2015.csv & ca_law_enforcement_by_county.csv, ca_offenses_by_county.csv
 -	You will have to create a Kaggle account in order to download the CSV files
 -	A dictionary, in excel format, was also downloaded as it defines what the column headers mean
