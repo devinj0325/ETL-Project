@@ -2,7 +2,7 @@ CREATE DATABASE etl_project;
 
 CREATE TABLE forcebycounty
 (
-    id SERIAL
+    id SERIAL,
     county VARCHAR,
     total_employees INT,
     officers INT,
