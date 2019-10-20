@@ -72,12 +72,14 @@ print(engine)
 
 # Use Pandas To Load CSV converted DataFrame into database
 cleaned.to_sql(name='force_by_county', con=engine, if_exists='replace', index=True, index_label='id')
+cleaned.to_sql(name='offenses_by_county', con=engine, if_exists='replace', index=True, index_label='id')
+
 
 # offenses_selected_df.to_sql(name='offensesbycounty', con=engine, if_exists='replace', index=True, index_label='id')
 # Check For Tables
-engine.table_names()
+# engine.table_names()
 
 # Confirm Data Has Been Added By Querying The properties_table,
 # Note: Can also check using pgAdmin
-pd.read_sql_query('SELECT * FROM forcebycounty limit 100', con=engine, index_col = 'id').head()
-pd.read_sql_query('SELECT * FROM offensesbycounty limit 100', con=engine, index_col = 'id').head()
+# pd.read_sql_query('SELECT * FROM forcebycounty limit 100', con=engine, index_col = 'id').head()
+# pd.read_sql_query('SELECT * FROM offensesbycounty limit 100', con=engine, index_col = 'id').head()
