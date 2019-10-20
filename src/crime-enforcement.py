@@ -12,11 +12,11 @@ offensesbycounty_df = pd.read_csv(csv_file)
 offensesbycounty_df.head()
 
 # Create New Data With Select Columns
-selected_columns = ['county', 'total_employees', 'officers', 'civilians','fips']
+selected_columns = ['county','total_employees','officers','civilians','fips']
 enforcement_selected_df = law_enforcement_df[selected_columns].copy()
 enforcement_selected_df
 
-selected_columns = ['county', 'metro/nonmetro','violent_crime', 'murder', 'rape','rape_legacy','robbery','assault','property_crime','burglary','larceny','vehicle_theft','arson', 'fips']
+selected_columns = ['county','metro/nonmetro','violent_crime','murder', 'rape','rape_legacy','robbery','assault','property_crime','burglary','larceny','vehicle_theft','arson','fips']
 offenses_selected_df = offensesbycounty_df[selected_columns].copy()
 offenses_selected_df
 
