@@ -85,3 +85,26 @@ cleaned.to_sql(name='offenses_by_county', con=engine, if_exists='replace', index
 properties_selected_df.to_sql(name='properties_table', con=engine, if_exists='replace', index=True, index_label='id')
 
 print("Complete!")
+
+#-----------------------------------------------
+#2015 Squarefootage -- Reported in 2016
+# Store filepath in a variable
+zillow_data = "../resources/Zillow_Data_2015.csv"
+
+# Read the csv file
+zillow_data_df = pd.read_csv(zillow_data)
+
+# Create new DataFrame with select columns
+updated_zillow_df = zillow_data_df[['calculatedfinishedsquarefeet', 'assessmentyear', 'fips']].copy()
+
+# Drop any NaN's
+updated_zillow_df.dropna(axis=0, how='any', inplace=True)
+
+# Connect to local database
+engine = create_engine('postgresql://postgres:Noodle07!@localhost:5432/etl_project')
+
+# Check for table names
+engine.table_names()
+
+# Use pandas to load csv converted DataFrame into database
+updated_zillow_df.to_sql(name='squarefootage', con=engine, if_exists='append', index=False)
