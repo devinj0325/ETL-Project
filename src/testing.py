@@ -2,7 +2,6 @@
 import pandas as pd
 from sqlalchemy import create_engine
 
-
 # Police Force Data
 # Store CSV Into Dataframe
 csv_file = "../resources/ca_law_enforcement_by_county.csv"
@@ -29,6 +28,7 @@ cleaned["total_employees"] = pd.to_numeric(cleaned["total_employees"].map(lambda
 cleaned["officers"] = pd.to_numeric(cleaned["officers"].map(lambda x: x.replace(",", "")))
 cleaned["civilians"] = pd.to_numeric(cleaned["civilians"].map(lambda x: x.replace(",", "")))
 
+
 # selected_columns = ['county', 'metro/nonmetro','violent_crime', 'murder', 'rape','rape_legacy','robbery','assault','property_crime','burglary','larceny','vehicle_theft','arson', 'fips']
 # offenses_selected_df = offensesbycounty_df[selected_columns].copy()
 # offenses_selected_df
@@ -36,19 +36,36 @@ cleaned["civilians"] = pd.to_numeric(cleaned["civilians"].map(lambda x: x.replac
 #Offenses Data
 # Store CSV Into Dataframe
 csv_file = "../resources/ca_offenses_by_county.csv"
-csvfile_df = pd.read_csv(csv_file)
-csvfile_df.head()
+offensesbycounty_df = pd.read_csv(csv_file)
+offensesbycounty_df.head()
 
 #Clean Data
 # Remove Metro/NonMetro column
-csvfile_df.drop("Metropolitan/Nonmetropolitan", axis=1)
-
+offense_df = offensesbycounty_df.drop(["Metropolitan/Nonmetropolitan", "Rape(legacy definition)"], axis=1)
 #Extract only the 3 counties needed
-county_list = ['Los Angeles', 'Ventura', 'Orange']
-cleaned = csvfile_df[csvfile_df['County'].isin(county_list)].copy()
+counties_list = ['Los Angeles', 'Ventura', 'Orange']
+county = offense_df[offense_df['County'].isin(counties_list)].copy()
 
+# Setting values for FIPS LA, Orange, Ventura and insert into DataFrame
+county['FIPS'] = fips
 
+#rename columns
+county.columns = ['county','violent_crime', 'murder', 'rape', 'robbery','assault','property_crime','burglary','larceny','vehicle_theft','arson', 'fips']
 
+#remove commas from number fields in offense table
+county['violent_crime'] = pd.to_numeric(county['violent_crime'].map(lambda x: x.replace(",", "")))
+
+county["robbery"] = pd.to_numeric(county["robbery"].map(lambda x: x.replace(",", "")))
+
+county["property_crime"] = pd.to_numeric(county["property_crime"].map(lambda x: x.replace(",", "")))
+
+county["burglary"] = pd.to_numeric(county["burglary"].map(lambda x: x.replace(",", "")))
+
+county["larceny"] = pd.to_numeric(county["larceny"].map(lambda x: x.replace(",", "")))
+
+county["vehicle_theft"] = pd.to_numeric(county["vehicle_theft"].map(lambda x: x.replace(",", "")))
+
+county["assault"] = pd.to_numeric(county["assault"].map(lambda x: x.replace(",", "")))
 # Connect To Local Database
 engine = create_engine('postgresql://postgres:postgres@localhost:5432/etl_project')
 print(engine)
@@ -63,4 +80,4 @@ engine.table_names()
 # Confirm Data Has Been Added By Querying The properties_table,
 # Note: Can also check using pgAdmin
 pd.read_sql_query('SELECT * FROM forcebycounty limit 100', con=engine, index_col = 'id').head()
-# pd.read_sql_query('SELECT * FROM offensesbycounty limit 100', con=engine, index_col = 'id').head()
+pd.read_sql_query('SELECT * FROM offensesbycounty limit 100', con=engine, index_col = 'id').head()
