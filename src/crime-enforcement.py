@@ -16,9 +16,9 @@ selected_columns = ['county','total_employees','officers','civilians','fips']
 enforcement_selected_df = law_enforcement_df[selected_columns].copy()
 enforcement_selected_df
 
-selected_columns = ['county','metro/nonmetro','violent_crime','murder', 'rape','rape_legacy','robbery','assault','property_crime','burglary','larceny','vehicle_theft','arson','fips']
-offenses_selected_df = offensesbycounty_df[selected_columns].copy()
-offenses_selected_df
+#selected_columns = ['county','metro/nonmetro','violent_crime','murder', 'rape','rape_legacy','robbery','assault','property_crime','burglary','larceny','vehicle_theft','arson','fips']
+#offenses_selected_df = offensesbycounty_df[selected_columns].copy()
+#offenses_selected_df
 
 # Clean DataFrame
 # Process by which the "Not A Number" entry was dropped:
@@ -35,9 +35,9 @@ print(engine)
 # Use Pandas To Load CSV converted DataFrame into database
 enforcement_selected_df.to_sql(name='forcebycounty', con=engine, if_exists='replace', index=True, index_label='id')
 
-offenses_selected_df.to_sql(name='offensesbycounty', con=engine, if_exists='replace', index=True, index_label='id')
+#offenses_selected_df.to_sql(name='offensesbycounty', con=engine, if_exists='replace', index=True, index_label='id')
 # Check For Tables
-engine.table_names()
+#engine.table_names()
 
 # Confirm Data Has Been Added By Querying The properties_table,
 # Note: Can also check using pgAdmin
