@@ -3,7 +3,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 # Store CSV Into Dataframe
-csv_file = "./Resources/properties_2016.csv"
+csv_file = "../Resources/properties_2016.csv"
 properties_2016_df = pd.read_csv(csv_file)
 properties_2016_df.head()
 
