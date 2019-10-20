@@ -41,5 +41,5 @@ Load
 ### Recommended Queries
 **SELECT** square_footage.fips, square_footage.square_footage, offensesbycounty.violent_crime, offensesbycounty.rape
 **FROM** offensesbycounty
-**INNER JOIN** square_footage **ON**
-square_footage.fips = offensesbycounty.fips
+**INNER JOIN** square_footage 
+**ON** square_footage.fips = offensesbycounty.fips
