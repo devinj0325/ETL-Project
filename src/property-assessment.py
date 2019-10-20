@@ -12,13 +12,6 @@ selected_columns = ['assessmentyear', 'fips', 'structuretaxvaluedollarcnt']
 properties_selected_df = properties_2016_df[selected_columns].copy()
 properties_selected_df
 
-# Clean DataFrame
-# Process by which the "Not A Number" entry was dropped:
-# properties_selected.drop(['NaN'], inplace=True)
-# to_drop = [NaN]
-# properties_selected[~properties_selected['structuretaxvaluedollarcnt'].isin(to_drop)]
-# properties_selected.head()
-
 properties_selected_df.dropna(how='any', inplace=True)
 properties_selected_df
 
