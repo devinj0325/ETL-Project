@@ -3,20 +3,20 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 # Store CSV Into Dataframe
-csv_file = "../Resources/ca_law_enforcement_by_county.csv"
+csv_file = "../resources/ca_law_enforcement_by_county.csv"
 law_enforcement_df = pd.read_csv(csv_file)
 law_enforcement_df.head()
 
-csv_file = "../Resources/ca_offenses_by_county.csv"
+csv_file = "../resources/ca_offenses_by_county.csv"
 offensesbycounty_df = pd.read_csv(csv_file)
 offensesbycounty_df.head()
 
 # Create New Data With Select Columns
-selected_columns = ['county', 'total_employees', 'officers', 'civilians','fips']
+selected_columns = ['county','total_employees','officers','civilians','fips']
 enforcement_selected_df = law_enforcement_df[selected_columns].copy()
 enforcement_selected_df
 
-selected_columns = ['county', 'metro/nonmetro','violent_crime', 'murder', 'rape','rape_legacy','robbery','assault','property_crime','burglary','larceny','vehicle_theft','arson', 'fips']
+selected_columns = ['county','metro/nonmetro','violent_crime','murder', 'rape','rape_legacy','robbery','assault','property_crime','burglary','larceny','vehicle_theft','arson','fips']
 offenses_selected_df = offensesbycounty_df[selected_columns].copy()
 offenses_selected_df
 
