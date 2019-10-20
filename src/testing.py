@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 
 # Police Force Data
 # Store CSV Into Dataframe
-csv_file = "../resources/ca_law_enforcement_by_county.csv"
+csv_file = "../../../resources/ca_law_enforcement_by_county.csv"
 force_df = pd.read_csv(csv_file)
 force_df.head()
 
@@ -35,7 +35,7 @@ cleaned["civilians"] = pd.to_numeric(cleaned["civilians"].map(lambda x: x.replac
 
 #Offenses Data
 # Store CSV Into Dataframe
-csv_file = "../resources/ca_offenses_by_county.csv"
+csv_file = "../../../resources/ca_offenses_by_county.csv"
 offensesbycounty_df = pd.read_csv(csv_file)
 offensesbycounty_df.head()
 
