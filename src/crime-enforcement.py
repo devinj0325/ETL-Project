@@ -3,11 +3,11 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 # Store CSV Into Dataframe
-csv_file = "../Resources/ca_law_enforcement_by_county.csv"
+csv_file = "../resources/ca_law_enforcement_by_county.csv"
 law_enforcement_df = pd.read_csv(csv_file)
 law_enforcement_df.head()
 
-csv_file = "../Resources/ca_offenses_by_county.csv"
+csv_file = "../resources/ca_offenses_by_county.csv"
 offensesbycounty_df = pd.read_csv(csv_file)
 offensesbycounty_df.head()
 
@@ -27,11 +27,6 @@ offenses_selected_df
 # properties_selected[~properties_selected['structuretaxvaluedollarcnt'].isin(to_drop)]
 # properties_selected.head()
 
-enforcement_selected_df.dropna(how='any', inplace=True)
-enforcement_selected_df
-
-offenses_selected_df.dropna(how='any', inplace=True)
-offenses_selected_df
 
 # Connect To Local Database
 engine = create_engine('postgresql://postgres:postgres@localhost:5432/etl_project')
@@ -40,7 +35,7 @@ print(engine)
 # Use Pandas To Load CSV converted DataFrame into database
 enforcement_selected_df.to_sql(name='forcebycounty', con=engine, if_exists='replace', index=True, index_label='id')
 
-offenses_selected_df.to_sql(name='forcebycounty', con=engine, if_exists='replace', index=True, index_label='id')
+offenses_selected_df.to_sql(name='offensesbycounty', con=engine, if_exists='replace', index=True, index_label='id')
 # Check For Tables
 engine.table_names()
 
