@@ -3,7 +3,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 # Store CSV Into Dataframe
-csv_file = "./Resources/properties_2016.csv"
+csv_file = "../../etl-resources/properties_2016.csv"
 properties_2016_df = pd.read_csv(csv_file)
 properties_2016_df.head()
 
@@ -27,5 +27,5 @@ engine.table_names()
 
 # Confirm Data Has Been Added By Querying The properties_table,
 # Note: Can also check using pgAdmin
-pd.read_sql_query('SELECT * FROM properties_table limit 100', con=engine, index_col = 'id').head()
+# pd.read_sql_query('SELECT * FROM properties_table limit 100', con=engine, index_col = 'id').head()
 
