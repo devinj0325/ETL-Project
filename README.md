@@ -39,7 +39,7 @@ Load
 -	Using sqlalchemy and psycopg2, an engine was created, and the CSV files were loaded into PostgreSQL. The table was previously created in PostgreSQL, using our schema. 
 
 ### Recommended Queries
-**SELECT** square_footage.fips, square_footage.square_footage, offensesbycounty.violent_crime, offensesbycounty.rape
-**FROM** offensesbycounty
+**SELECT** square_footage.fips, square_footage.square_footage, offenses_by_county.violent_crime, offenses_by_county.rape
+**FROM** offenses_by_county
 **INNER JOIN** square_footage 
-**ON** square_footage.fips = offensesbycounty.fips
+**ON** square_footage.fips = offenses_by_county.fips
