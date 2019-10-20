@@ -11,7 +11,7 @@ Extract
 -	A data dictionary, in excel format, was also downloaded as it defines what the column headers mean
 -	File path: resources/Zillow_data_dictionary.xlsx
 -	Download Crime CSV files from Kaggle (https://www.kaggle.com/fbi-us/california-crime#ca_offenses_by_city.csv)
--	The Crime data is small enough to store in the shared repository; the file paths are: resources/ca_law_enforcement_by_county.csv, resources/ca_offenses_by_county.csv
+-	The Crime data file paths are: resources/ca_law_enforcement_by_county.csv, resources/ca_offenses_by_county.csv
 
 
 Transformation
@@ -28,7 +28,7 @@ Transformation
     -	Eliminated all rows except for the counties we are comparing
     -	Added a column for the "fips" code for each county
 -	For the offenses for each of the counties    
-    -	Filtered columns TBD
+    -	Filtered columns ('county','violent_crime', 'murder', 'rape', 'robbery','assault','property_crime','burglary','larceny','vehicle_theft','arson', 'fips')
     -	Eliminated all rows except for the counties we are comparing
     -	Added a column for the "fips" code for each county
 
@@ -38,8 +38,8 @@ Load
 -	File path: schema/schema.sql
 -	Using sqlalchemy and psycopg2, an engine was created, and the CSV files were loaded into PostgreSQL. The table was previously created in PostgreSQL, using our schema. 
 
-Recommended Queries
-SELECT square_footage.fips, square_footage.square_footage, offensesbycounty.violent_crime, offensesbycounty.rape
-FROM offensesbycounty
-INNER JOIN square_footage ON
+### Recommended Queries
+**SELECT** square_footage.fips, square_footage.square_footage, offensesbycounty.violent_crime, offensesbycounty.rape
+**FROM** offensesbycounty
+**INNER JOIN** square_footage **ON**
 square_footage.fips = offensesbycounty.fips
