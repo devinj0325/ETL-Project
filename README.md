@@ -6,12 +6,11 @@ This repository represents an Extract, Transform, and Load (ETL) pipeline for an
 
 Extract 
 -	You will have to create a Kaggle account in order to download the CSV files; you will also need to provide a phone number for mulifactor authentication for the Zillow data
--	Download Zillow CSV file from Kaggle (https://www.kaggle.com/c/zillow-prize-1/data)
--	This data set is too large to store in GitHub, so the file must be stored locally
+-	Download Zillow CSV file from Kaggle (https://www.kaggle.com/c/zillow-prize-1/data) to store locallyl
 -	A data dictionary, in excel format, was also downloaded as it defines what the column headers mean
 -	File path: resources/Zillow_data_dictionary.xlsx
--	Download Crime CSV files from Kaggle (https://www.kaggle.com/fbi-us/california-crime#ca_offenses_by_city.csv)
--	The Crime data file paths are: resources/ca_law_enforcement_by_county.csv, resources/ca_offenses_by_county.csv
+-	Download Crime CSV files from Kaggle (https://www.kaggle.com/fbi-us/california-crime#ca_offenses_by_city.csv) to store locally
+
 
 
 Transformation
@@ -35,10 +34,10 @@ Transformation
 
 Load 
 -	Created schema 
--	File path: schema/schema.sql
+-	File path: schema.sql
 -	Using sqlalchemy and psycopg2, an engine was created, and the CSV files were loaded into PostgreSQL. The table was previously created in PostgreSQL, using our schema. 
 
-### Recommended Queries
+### Sample Query
 **SELECT** square_footage.fips, square_footage.square_footage, offenses_by_county.violent_crime, offenses_by_county.rape
 **FROM** offenses_by_county
 **INNER JOIN** square_footage 
