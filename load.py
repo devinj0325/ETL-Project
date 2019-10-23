@@ -62,6 +62,7 @@ county["vehicle_theft"] = pd.to_numeric(county["vehicle_theft"].map(lambda x: x.
 
 county["assault"] = pd.to_numeric(county["assault"].map(lambda x: x.replace(",", "")))
 
+
 # #-----------------------------------------------
 # #2015 Structure Tax Value / Assessment -- Reported in 2016
 # # Store CSV Into Dataframe
@@ -75,16 +76,6 @@ properties_selected_df = properties_2016_df[selected_columns].copy()
 # #Dropping NaN values
 properties_selected_df.dropna(how='any', inplace=True)
 
-
-# # Connect To Local Database
-engine = create_engine('postgresql://postgres:postgres@localhost:5432/etl_project')
-
-# # Use Pandas To Load CSV converted DataFrame into database
-cleaned.to_sql(name='force_by_county', con=engine, if_exists='replace', index=True, index_label='id')
-cleaned.to_sql(name='offenses_by_county', con=engine, if_exists='replace', index=True, index_label='id')
-properties_selected_df.to_sql(name='properties_table', con=engine, if_exists='replace', index=True, index_label='id')
-
-# print("Complete!")
 
 #-----------------------------------------------
 #2015 Squarefootage -- Reported in 2016
@@ -103,8 +94,9 @@ updated_zillow_df.dropna(axis=0, how='any', inplace=True)
 # Connect to local database
 engine = create_engine('postgresql://postgres:postgres@localhost:5432/etl_project')
 
-# Check for table names
-engine.table_names()
 
-# Use pandas to load csv converted DataFrame into database
-updated_zillow_df.to_sql(name='squarefootage', con=engine, if_exists='append', index=False)
+# # Use Pandas To Load CSV converted DataFrame into database
+cleaned.to_sql(name='force_by_county', con=engine, if_exists='replace', index=True, index_label='id')
+cleaned.to_sql(name='offenses_by_county', con=engine, if_exists='replace', index=True, index_label='id')
+properties_selected_df.to_sql(name='property_assessment', con=engine, if_exists='replace', index=True, index_label='id')
+updated_zillow_df.to_sql(name='square_footage', con=engine, if_exists='append', index=False)
